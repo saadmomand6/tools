@@ -86,7 +86,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               color: _currentIndex == 1
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: _currentIndex == 1 ? 30.sp : 25.sp,
+                              size: 25.sp,
+                              // _currentIndex == 1 ? 30.sp : 25.sp,
                             ),
                             Text(
                               textAlign: TextAlign.center,
@@ -112,7 +113,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               color: _currentIndex == 2
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: _currentIndex == 2 ? 30.sp : 25.sp,
+                              size: 25.sp,
+                              // _currentIndex == 2 ? 30.sp : 25.sp,
                             ),
                             Text(
                               textAlign: TextAlign.center,
@@ -138,7 +140,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               color: _currentIndex == 3
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: _currentIndex == 1 ? 30.sp : 25.sp,
+                              size: 25.sp,
+                              // _currentIndex == 1 ? 30.sp : 25.sp,
                             ),
                             Text(
                               textAlign: TextAlign.center,
@@ -164,7 +167,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               color: _currentIndex == 4
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: _currentIndex == 3 ? 30.sp : 25.sp,
+                              size: 25.sp,
+                              // _currentIndex == 4 ? 30.sp : 25.sp,
                             ),
                             Text(
                               'MY ACTION',
