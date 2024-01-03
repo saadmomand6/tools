@@ -12,7 +12,7 @@ class CustomTextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final String label;
-
+  final TextAlign? textAlign;
   final Widget? suffixIcon;
   final Widget? icon;
   final Color? fieldColor;
@@ -40,7 +40,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       required this.label,
       this.focusNode,
       required this.enabled,
-      this.fieldColor});
+      this.fieldColor, this.textAlign});
 
   final themecontroller = Get.put(ThemeHelper());
 
@@ -64,6 +64,7 @@ class CustomTextFieldWidget extends StatelessWidget {
           height: 5.sp,
         ),
         TextFormField(
+          textAlign: textAlign??TextAlign.start,
           onFieldSubmitted: onsubmit,
           enabled: enabled,
           focusNode: focusNode,
@@ -88,39 +89,48 @@ class CustomTextFieldWidget extends StatelessWidget {
             prefixIcon: icon,
             border: OutlineInputBorder(
               borderSide: BorderSide(
+                width: 2,
+                
                   color: themecontroller.bordercolor.withOpacity(0.4)),
               borderRadius: BorderRadius.circular(Constants.appTxtFld_borderRadius),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderSide: BorderSide(
+                width: 2,
                   color: themecontroller.bordercolor.withOpacity(0.4)),
               borderRadius: BorderRadius.circular(Constants.appTxtFld_borderRadius),
             ),
             disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
+                width: 2,
                   color: themecontroller.bordercolor.withOpacity(0.4)),
               borderRadius: BorderRadius.circular(Constants.appTxtFld_borderRadius),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
+                width: 2,
                   color: themecontroller.bordercolor.withOpacity(0.4)),
               borderRadius: BorderRadius.circular(Constants.appTxtFld_borderRadius),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
+                width: 2,
                   color: themecontroller.bordercolor.withOpacity(0.4)),
               borderRadius: BorderRadius.circular(Constants.appTxtFld_borderRadius),
             ),
             errorBorder: OutlineInputBorder(
               borderSide: BorderSide(
+                width: 2,
                   color: themecontroller.bordercolor.withOpacity(0.4)),
               borderRadius: BorderRadius.circular(Constants.appTxtFld_borderRadius),
             ),
             counterStyle: TextStyle(
               color: themecontroller.textcolor,
             ),
+            
             hintText: hintText,
             hintStyle: TextStyle(
+              fontSize: 14.sp,
               color: themecontroller.textcolor.withOpacity(0.5),
             ),
           ),

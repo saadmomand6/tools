@@ -52,6 +52,7 @@ dependencies:
   # webview_flutter: ^3.0.1
   hexcolor: ^3.0.1
   animated: ^2.0.0
+  carousel_slider: ^4.2.1
   
 
 dev_dependencies:

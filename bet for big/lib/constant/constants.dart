@@ -1,7 +1,7 @@
 class Constants {
   static const double screenPadding = 10;
   static const double appBtnborderRadius = 30;
-  static const double appTxtFld_borderRadius = 20;
+  static const double appTxtFld_borderRadius = 40;
   static const String currency = '€';
   static var API_HOST = "https://brainaitech.com/mechanic";
 

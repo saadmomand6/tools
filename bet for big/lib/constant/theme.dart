@@ -22,7 +22,7 @@ class ThemeHelper extends GetxController {
   final textfiledecolor = const Color.fromARGB(255, 244, 244, 245);
 
   final nutrientsecolor = const Color.fromARGB(255, 244, 244, 245);
-  final textcolor = const Color(0xff101828);
+  final textcolor = Color.fromARGB(255, 255, 255, 255);
 
   final textcolor2 = Color(0xff101828).withOpacity(0.5);
 
