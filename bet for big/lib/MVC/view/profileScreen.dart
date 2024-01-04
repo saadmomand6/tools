@@ -1,3 +1,4 @@
+import 'package:bet_for_big/MVC/view/packgeScreen.dart';
 import 'package:bet_for_big/components/custom_appbar.dart';
 import 'package:bet_for_big/components/historyRecordCard.dart';
 import 'package:bet_for_big/components/image_widget.dart';
@@ -5,6 +6,7 @@ import 'package:bet_for_big/components/round_button.dart';
 import 'package:bet_for_big/components/searchTextfield.dart';
 import 'package:bet_for_big/components/spring_widget.dart';
 import 'package:bet_for_big/constant/constants.dart';
+import 'package:bet_for_big/constant/navigation.dart';
 import 'package:bet_for_big/constant/theme.dart';
 import 'package:bet_for_big/data/dummyData/mockData.dart';
 import 'package:bet_for_big/helper/internet_controller.dart';
@@ -269,7 +271,10 @@ class ProfileScreen extends StatelessWidget {
                                           letterSpacing: 1.sp),
                                     ),
                                     GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigation.getInstance.screenNavigation(
+                                            context, packageScreen());
+                                      },
                                       child: Text(
                                         'View All',
                                         softWrap: true,

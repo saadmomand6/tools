@@ -9,14 +9,16 @@ class searchTextFeild extends StatelessWidget {
     required FocusNode searchFocusNode,
     required this.searchController,
     this.onTap,
-    this.height, this.FontSize,
+    this.height,
+    this.FontSize,
+    this.btnIcon,
   }) : _searchFocusNode = searchFocusNode;
   final Function()? onTap;
   final FocusNode _searchFocusNode;
   final TextEditingController searchController;
   final double? height;
   final double? FontSize;
-
+  final IconData? btnIcon;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ThemeHelper>(builder: (themecontroller) {
@@ -42,9 +44,8 @@ class searchTextFeild extends StatelessWidget {
               focusNode: _searchFocusNode,
               controller: searchController,
               style: TextStyle(
-                
                 color: themecontroller.textcolor,
-                fontSize: FontSize??12.sp,
+                fontSize: FontSize ?? 12.sp,
               ),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -82,7 +83,7 @@ class searchTextFeild extends StatelessWidget {
                 ),
                 hintText: 'Saerch By Name',
                 hintStyle: TextStyle(
-                  fontSize: FontSize??12.sp,
+                  fontSize: FontSize ?? 12.sp,
                   color: Colors.black.withOpacity(0.5),
                 ),
               ),
@@ -95,7 +96,7 @@ class searchTextFeild extends StatelessWidget {
               child: Container(
                 height: 45.sp,
                 child: Icon(
-                  Icons.search,
+                  btnIcon ?? Icons.search,
                   color: Colors.black,
                 ),
                 decoration: BoxDecoration(
