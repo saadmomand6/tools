@@ -19,20 +19,7 @@ class HomeScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: AppBar(
-                centerTitle: false,
-                leading: SizedBox(),
-                title: Container(
-                  height: 50.sp,
-                  width: 240.sp,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/logo.png'),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
+              appBar: CustomAppBar(),
               body: Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: Constants.screenPadding,

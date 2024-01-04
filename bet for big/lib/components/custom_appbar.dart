@@ -7,99 +7,52 @@ import '../constant/constants.dart';
 import 'spring_widget.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final VoidCallback? leading;
-  final Widget? title;
-  final EdgeInsetsGeometry? padding;
-  final Widget? trailing;
-  final bool hideDivider;
-  final double height;
-  final double? margin;
-  final Color? backgroundColor;
-  final Color? leadingColor;
-  final double leadingmargin;
-  final bool appbarpadding;
-  final IconData? leadingIcon;
-  final double? leadingSize;
-
   CustomAppBar({
     Key? key,
-    this.leading,
-    this.leadingmargin = 0,
-    this.margin = 10,
-    this.title,
-    this.trailing,
-    this.padding,
-    this.hideDivider = false,
-    this.height = 60,
-    this.backgroundColor,
-    this.leadingColor,
-    this.appbarpadding = true,
-    this.leadingIcon,
-    this.leadingSize,
-  }) : super(key: key);
+    this.onTap,
+  });
+
+  final Function()? onTap;
 
   final themecontroller = Get.put(ThemeHelper());
 
   @override
   Widget build(BuildContext context) {
     final themeController = Get.put(ThemeHelper());
-    return Padding(
-        padding: appbarpadding
-            ? EdgeInsets.symmetric(horizontal: Constants.screenPadding)
-            : EdgeInsets.zero,
+    return AppBar(
+      centerTitle: false,
+      leadingWidth: 150.sp,
+      leading: Padding(
+        padding:
+            const EdgeInsets.symmetric(horizontal: Constants.screenPadding),
         child: Container(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-            color: backgroundColor,
-            child: Column(children: [
-              Container(
-                margin: EdgeInsets.symmetric(vertical: margin!),
-                color: backgroundColor,
-                height: height,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    if (leading != null)
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Platform.isIOS
-                              ? SpringWidget(
-                                  onTap: leading!,
-                                  child: Icon(
-                                    leadingIcon ??
-                                        Icons.arrow_back_ios_new_rounded,
-                                    size: leadingSize,
-                                    color: leadingColor ??
-                                        themecontroller.colorIcon,
-                                  ),
-                                )
-                              : GestureDetector(
-                                  onTap: leading,
-                                  child: Icon(
-                                    leadingIcon ?? Icons.arrow_back,
-                                    size: leadingSize,
-                                    color: themeController.textcolor,
-                                  ),
-                                )),
-                    if (leading == null) const SizedBox(),
-                    if (title != null)
-                      Align(alignment: Alignment.center, child: title),
-                    if (title == null) const SizedBox(),
-                    if (trailing != null)
-                      Align(alignment: Alignment.centerRight, child: trailing!),
-                    if (trailing == null)
-                      const Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: Constants.screenPadding,
-                        ),
-                      )
-                  ],
-                ),
-                // if (!hideDivider) const Divider(height: 0),
-              ),
-            ])));
+          height: 20.sp,
+          width: 70.sp,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/logo2.png'),
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      ),
+      actions: [
+        GestureDetector(
+          onTap: () {},
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: Constants.screenPadding),
+            child: Icon(
+              Icons.menu,
+              color: themecontroller.colorPrimary,
+              size: 25.sp,
+            ),
+          ),
+        )
+      ],
+    );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(height);
+  Size get preferredSize => Size.fromHeight(40.sp);
 }

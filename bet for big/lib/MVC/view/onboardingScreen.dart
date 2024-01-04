@@ -39,7 +39,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: Constants.screenPadding,
+                      horizontal: 10,
                       vertical: Constants.screenPadding),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -123,7 +123,7 @@ class OnboardingScreen extends StatelessWidget {
                             borderColor:
                                 const Color.fromARGB(255, 216, 215, 215),
                             onTap: () {
-                              Navigation.getInstance.screenNavigation(
+                              Navigation.getInstance.Page_PushAndReplaceNavigationwithTransition(
                                   context, RegisterationScreen());
                             },
                           ),

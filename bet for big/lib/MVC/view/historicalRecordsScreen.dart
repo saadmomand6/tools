@@ -24,20 +24,7 @@ class HistoryRecordScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: AppBar(
-                centerTitle: false,
-                leading: SizedBox(),
-                title: Container(
-                  height: 50.sp,
-                  width: 240.sp,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/logo.png'),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
+              appBar: CustomAppBar(),
               body: Column(
                 children: [
                   Container(
@@ -129,118 +116,209 @@ class HistoryRecordScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: Constants.screenPadding,
                           vertical: Constants.screenPadding),
-                      child: Row(children: [
-                        CircleAvatar(
-                          radius: 40.sp,
-                        ),
-                        SizedBox(
-                          width: 5.sp,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'NCAAB',
-                              style: TextStyle(
-                                color: themecontroller.colorPrimary
-                                    .withOpacity(0.6),
-                                fontSize: 8.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            CircleAvatar(
+                              radius: 40.sp,
                             ),
-                            SizedBox(
-                              height: 2.sp,
-                            ),
-                            SizedBox(
-                              width: 70.sp,
-                              child: Text(
-                                'calvin king',
-                                softWrap: true,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  color: Colors.black.withOpacity(0.5),
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'NCAAB',
+                                  style: TextStyle(
+                                    color: themecontroller.colorPrimary
+                                        .withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 5.sp,
-                            ),
-                            Text(
-                              'Bat on',
-                              style: TextStyle(
-                                color: themecontroller.colorPrimary
-                                    .withOpacity(0.6),
-                                fontSize: 8.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Text(
-                              'category Flames',
-                              style: TextStyle(
-                                color: Colors.black.withOpacity(0.6),
-                                fontSize: 8.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              'NCAAB',
-                              style: TextStyle(
-                                color: themecontroller.colorPrimary
-                                    .withOpacity(0.6),
-                                fontSize: 8.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 2.sp,
-                            ),
-                            SizedBox(
-                              width: 70.sp,
-                              child: Text(
-                                'calvin king',
-                                softWrap: true,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  color: Colors.black.withOpacity(0.5),
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold,
+                                SizedBox(
+                                  height: 2.sp,
                                 ),
-                              ),
+                                SizedBox(
+                                  width: 70.sp,
+                                  child: Text(
+                                    'calvin king',
+                                    softWrap: true,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      color: Colors.black.withOpacity(0.5),
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.sp,
+                                ),
+                                Text(
+                                  'Bat on',
+                                  style: TextStyle(
+                                    color: themecontroller.colorPrimary
+                                        .withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  'category Flames',
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: 5.sp,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'NCAAB',
+                                  style: TextStyle(
+                                    color: themecontroller.colorPrimary
+                                        .withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 2.sp,
+                                ),
+                                SizedBox(
+                                  width: 70.sp,
+                                  child: Text(
+                                    'calvin king',
+                                    softWrap: true,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      color: Colors.black.withOpacity(0.5),
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.sp,
+                                ),
+                                Text(
+                                  'Bat on',
+                                  style: TextStyle(
+                                    color: themecontroller.colorPrimary
+                                        .withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  'category Flames',
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              'Bat on',
-                              style: TextStyle(
-                                color: themecontroller.colorPrimary
-                                    .withOpacity(0.6),
-                                fontSize: 8.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Odds',
+                                  style: TextStyle(
+                                    color: themecontroller.colorPrimary
+                                        .withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  '-200',
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.5),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8.sp,
+                                ),
+                                Text(
+                                  'Risk',
+                                  style: TextStyle(
+                                    color: themecontroller.colorPrimary
+                                        .withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  '4',
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              'category Flames',
-                              style: TextStyle(
-                                color: Colors.black.withOpacity(0.6),
-                                fontSize: 8.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        )
-                      ]),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Odds',
+                                  style: TextStyle(
+                                    color: themecontroller.colorPrimary
+                                        .withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  '-200',
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.5),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8.sp,
+                                ),
+                                Text(
+                                  'Risk',
+                                  style: TextStyle(
+                                    color: themecontroller.colorPrimary
+                                        .withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Text(
+                                  '4',
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.6),
+                                    fontSize: 8.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ]),
                     ),
                   )
                 ],

@@ -2,15 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-// import 'package:page_transition/page_transition.dart';
 
-// import '../custom/fullscreen_Imageview.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Navigation {
   static Navigation? _instance;
   static Navigation get getInstance => _instance ??= Navigation();
-
 
   screenNavigation(BuildContext context, Widget childwidget) {
     return Navigator.push(
@@ -40,19 +37,20 @@ class Navigation {
     }
   }
 
-  // void Page_PushAndReplaceNavigation(BuildContext context, Widget childWidget) {
-  //   Navigator.pushAndRemoveUntil(
-  //     context,
-  //     PageTransition(
-  //       type: PageTransitionType.rightToLeftWithFade,
-  //       child: childWidget,
-  //       isIos: true,
-  //       duration: Duration(milliseconds: 900),
-  //       reverseDuration: Duration(milliseconds: 400),
-  //     ),
-  //     (route) => false,
-  //   );
-  // }
+  void Page_PushAndReplaceNavigationwithTransition(
+      BuildContext context, Widget childWidget) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      PageTransition(
+        type: PageTransitionType.rightToLeftWithFade,
+        child: childWidget,
+        isIos: true,
+        duration: Duration(milliseconds: 900),
+        reverseDuration: Duration(milliseconds: 400),
+      ),
+      (route) => false,
+    );
+  }
 
   // void fromleftPage_PushAndReplaceNavigation(
   //     BuildContext context, Widget childWidget) {

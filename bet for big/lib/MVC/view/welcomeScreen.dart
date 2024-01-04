@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bet_for_big/MVC/view/onboardingScreen.dart';
 import 'package:bet_for_big/MVC/view/registerationScreen.dart';
 import 'package:bet_for_big/components/round_button.dart';
@@ -14,56 +16,57 @@ class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});
 
   final internetController = Get.put(InternetController());
+  Goto(BuildContext context) {
+    Timer(Duration(seconds: 2), () {
+      Navigation.getInstance.Page_PushAndReplaceNavigationwithTransition(
+          context, OnboardingScreen());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
+    Goto(context);
     return GetBuilder<ThemeHelper>(builder: (themecontroller) {
       return AnnotatedRegion(
           value: themecontroller.systemUiOverlayWithPrimery,
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              body: GestureDetector(
-                onTap: () {
-                  Navigation.getInstance
-                      .screenNavigation(context, OnboardingScreen());
-                },
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/bg5.png'),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                        themecontroller.colorPrimary
-                            .withOpacity(0.9), // Adjust the opacity as needed
-                        BlendMode.srcATop,
-                      ),
+              body: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/bg5.png'),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      themecontroller.colorPrimary
+                          .withOpacity(0.9), // Adjust the opacity as needed
+                      BlendMode.srcATop,
                     ),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: Constants.screenPadding,
-                        vertical: Constants.screenPadding),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 30.sp,
-                          ),
-                          Container(
-                            height: 130.sp,
-                            width: 240.sp,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/images/logo.png'),
-                                fit: BoxFit.contain,
-                              ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Constants.screenPadding,
+                      vertical: Constants.screenPadding),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 30.sp,
+                        ),
+                        Container(
+                          height: 130.sp,
+                          width: 240.sp,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/logo.png'),
+                              fit: BoxFit.contain,
                             ),
                           ),
-                        ]),
-                  ),
+                        ),
+                      ]),
                 ),
               ),
             ),
