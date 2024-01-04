@@ -1,4 +1,5 @@
 import 'package:bet_for_big/MVC/view/loginScreen.dart';
+import 'package:bet_for_big/components/bottomNavigation.dart';
 import 'package:bet_for_big/components/custom_textfiled.dart';
 import 'package:bet_for_big/components/round_button.dart';
 import 'package:bet_for_big/constant/constants.dart';
@@ -137,7 +138,11 @@ class RegisterationScreen extends StatelessWidget {
                           backgroundColor:
                               themecontroller.colorPrimary.withOpacity(0.0),
                           borderColor: const Color.fromARGB(255, 216, 215, 215),
-                          onTap: () {},
+                          onTap: () {
+                            Navigation.getInstance
+                                .Page_PushAndReplaceNavigationwithTransition(
+                                    context, BottomNavBar());
+                          },
                         ),
                         SizedBox(
                           height: 20.sp,

@@ -1,10 +1,14 @@
 import 'package:bet_for_big/MVC/view/historicalRecordsScreen.dart';
+import 'package:bet_for_big/MVC/view/dummyScreen.dart';
 import 'package:bet_for_big/MVC/view/homeScreen.dart';
 import 'package:bet_for_big/MVC/view/myActionScreen.dart';
+import 'package:bet_for_big/MVC/view/profileScreen.dart';
+import 'package:bet_for_big/components/image_widget.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../constant/theme.dart';
@@ -57,12 +61,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.home,
+                            SvgPicture.asset(
+                              'assets/icons/home.svg',
                               color: _currentIndex == 0
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: _currentIndex == 0 ? 30.sp : 25.sp,
+                              height: 25.sp,
                             ),
                             Text(
                               textAlign: TextAlign.center,
@@ -83,13 +87,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.assignment,
+                            SvgPicture.asset(
+                              'assets/icons/ball.svg',
                               color: _currentIndex == 1
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: 25.sp,
-                              // _currentIndex == 1 ? 30.sp : 25.sp,
+                              height: 25.sp,
                             ),
                             Text(
                               textAlign: TextAlign.center,
@@ -110,13 +113,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.add_task_sharp,
+                            SvgPicture.asset(
+                              'assets/icons/package.svg',
                               color: _currentIndex == 2
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: 25.sp,
-                              // _currentIndex == 2 ? 30.sp : 25.sp,
+                              height: 25.sp,
                             ),
                             Text(
                               textAlign: TextAlign.center,
@@ -137,13 +139,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.assignment,
+                            SvgPicture.asset(
+                              'assets/icons/calculator.svg',
                               color: _currentIndex == 3
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: 25.sp,
-                              // _currentIndex == 1 ? 30.sp : 25.sp,
+                              height: 25.sp,
                             ),
                             Text(
                               textAlign: TextAlign.center,
@@ -164,13 +165,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.person_2,
-                              color: _currentIndex == 4
+                            CircleAvatar(
+                              backgroundColor: _currentIndex == 4
                                   ? themeController.colorPrimary
                                   : const Color.fromARGB(255, 180, 179, 179),
-                              size: 25.sp,
-                              // _currentIndex == 4 ? 30.sp : 25.sp,
+                              radius: 13.sp,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(110),
+                                child: ImageWidget(
+                                    height: 23.sp,
+                                    width: 23.sp,
+                                    imageUrl:
+                                        'https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'),
+                              ),
                             ),
                             Text(
                               'MY ACTION',
@@ -192,14 +199,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
       case 0:
         return HomeScreen();
       case 1:
-        return HomeScreen();
+        return HistoryRecordScreen();
 
       case 2:
-        return HomeScreen();
+        return MyActionScreen();
       case 3:
         return HistoryRecordScreen();
       case 4:
-        return MyActionScreen();
+        return ProfileScreen();
       default:
         return HomeScreen();
     }

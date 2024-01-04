@@ -98,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                           borderColor: const Color.fromARGB(255, 216, 215, 215),
                           onTap: () {
                             Navigation.getInstance
-                                .screenNavigation(context, BottomNavBar());
+                                .Page_PushAndReplaceNavigationwithTransition(context, BottomNavBar());
                           },
                         ),
                         SizedBox(
