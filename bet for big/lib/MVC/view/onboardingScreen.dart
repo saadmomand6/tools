@@ -28,7 +28,7 @@ class OnboardingScreen extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/bg.png'),
+                    image: AssetImage('assets/images/bg3.png'),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(
                       themecontroller.colorPrimary

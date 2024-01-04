@@ -1,4 +1,6 @@
+import 'package:bet_for_big/MVC/view/historicalRecordsScreen.dart';
 import 'package:bet_for_big/MVC/view/homeScreen.dart';
+import 'package:bet_for_big/MVC/view/myActionScreen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -195,9 +197,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
       case 2:
         return HomeScreen();
       case 3:
-        return HomeScreen();
+        return HistoryRecordScreen();
       case 4:
-        return HomeScreen();
+        return MyActionScreen();
       default:
         return HomeScreen();
     }

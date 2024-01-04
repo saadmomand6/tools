@@ -33,7 +33,7 @@ class WelcomeScreen extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/bg.png'),
+                      image: AssetImage('assets/images/bg5.png'),
                       fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
                         themecontroller.colorPrimary

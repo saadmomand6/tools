@@ -26,7 +26,7 @@ class ThemeHelper extends GetxController {
 
   final textcolor2 = Color(0xff101828).withOpacity(0.5);
 
-  final cardcolor = const Color(0xfff2f4f7);
+  final cardcolor = Color.fromARGB(255, 219, 246, 248);
 
   final backgoundcolor = const Color(0xffffffff);
   final bgcolor = const Color(0xfff2f4f7);
@@ -152,8 +152,8 @@ class ThemeHelper extends GetxController {
       );
 
   SystemUiOverlayStyle get systemUiOverlayWithPrimery => SystemUiOverlayStyle(
-        statusBarColor: colorPrimary.withOpacity(0.9),
-        systemNavigationBarColor: colorPrimary.withOpacity(0.9),
+        statusBarColor: Color.fromARGB(255, 35, 160, 189).withOpacity(0.9),
+        systemNavigationBarColor: Color.fromARGB(255, 35, 160, 189).withOpacity(0.9),
         statusBarBrightness:
             isDarkTheme.value ? Brightness.dark : Brightness.light,
         statusBarIconBrightness:
