@@ -1,4 +1,4 @@
-import 'package:bet_for_big/MVC/view/historicalRecordsScreen.dart';
+import 'package:bet_for_big/MVC/view/historicalRecordNonSubScreen.dart';
 import 'package:bet_for_big/MVC/view/dummyScreen.dart';
 import 'package:bet_for_big/MVC/view/homeScreen.dart';
 import 'package:bet_for_big/MVC/view/myActionScreen.dart';

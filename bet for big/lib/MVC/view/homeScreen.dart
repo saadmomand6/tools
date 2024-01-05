@@ -1,4 +1,4 @@
-import 'package:bet_for_big/MVC/view/historicalRecordsScreen.dart';
+import 'package:bet_for_big/MVC/view/historicalRecordNonSubScreen.dart';
 import 'package:bet_for_big/components/custom_appbar.dart';
 import 'package:bet_for_big/components/historyRecordCard.dart';
 import 'package:bet_for_big/components/image_widget.dart';
