@@ -3,7 +3,10 @@ import 'package:bet_for_big/MVC/view/dummyScreen.dart';
 import 'package:bet_for_big/MVC/view/homeScreen.dart';
 import 'package:bet_for_big/MVC/view/myActionScreen.dart';
 import 'package:bet_for_big/MVC/view/profileScreen.dart';
+import 'package:bet_for_big/components/custom_appbar.dart';
+import 'package:bet_for_big/components/drawer.dart';
 import 'package:bet_for_big/components/image_widget.dart';
+import 'package:bet_for_big/helper/data_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,6 +44,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             child: Scaffold(
               extendBody: true,
+              appBar: CustomAppBar(),
+              drawer: AppDrawer(),
               body: _buildPage(_currentIndex),
               bottomNavigationBar: Material(
                 elevation: 0.0,
@@ -72,7 +77,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               textAlign: TextAlign.center,
                               'MENU',
                               style: TextStyle(
-                                  color: Colors.black, fontSize: 7.sp),
+                                  fontWeight: FontWeight.w600,
+                                  color: _currentIndex == 0
+                                      ? themeController.colorPrimary
+                                      : const Color.fromARGB(
+                                          255, 180, 179, 179),
+                                  fontSize: 7.sp),
                             )
                           ],
                         ),
@@ -98,7 +108,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               textAlign: TextAlign.center,
                               'YESTERDAY PICKS',
                               style: TextStyle(
-                                  color: Colors.black, fontSize: 7.sp),
+                                  fontWeight: FontWeight.w600,
+                                  color: _currentIndex == 1
+                                      ? themeController.colorPrimary
+                                      : const Color.fromARGB(
+                                          255, 180, 179, 179),
+                                  fontSize: 7.sp),
                             )
                           ],
                         ),
@@ -124,7 +139,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               textAlign: TextAlign.center,
                               'PACKAGES',
                               style: TextStyle(
-                                  color: Colors.black, fontSize: 7.sp),
+                                  fontWeight: FontWeight.w600,
+                                  color: _currentIndex == 2
+                                      ? themeController.colorPrimary
+                                      : const Color.fromARGB(
+                                          255, 180, 179, 179),
+                                  fontSize: 7.sp),
                             )
                           ],
                         ),
@@ -150,7 +170,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                               textAlign: TextAlign.center,
                               'SUBSCRIBED PICKS',
                               style: TextStyle(
-                                  color: Colors.black, fontSize: 7.sp),
+                                  fontWeight: FontWeight.w600,
+                                  color: _currentIndex == 3
+                                      ? themeController.colorPrimary
+                                      : const Color.fromARGB(
+                                          255, 180, 179, 179),
+                                  fontSize: 7.sp),
                             )
                           ],
                         ),
@@ -175,14 +200,20 @@ class _BottomNavBarState extends State<BottomNavBar> {
                                 child: ImageWidget(
                                     height: 23.sp,
                                     width: 23.sp,
-                                    imageUrl:
-                                        'https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'),
+                                    imageUrl: DataStroge.userImage.string
+                                    // 'https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'
+                                    ),
                               ),
                             ),
                             Text(
                               'MY ACTION',
                               style: TextStyle(
-                                  color: Colors.black, fontSize: 7.sp),
+                                  fontWeight: FontWeight.w600,
+                                  color: _currentIndex == 4
+                                      ? themeController.colorPrimary
+                                      : const Color.fromARGB(
+                                          255, 180, 179, 179),
+                                  fontSize: 7.sp),
                             )
                           ],
                         ),

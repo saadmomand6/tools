@@ -1,3 +1,4 @@
+import 'package:bet_for_big/MVC/view/allSubscribedScreen.dart';
 import 'package:bet_for_big/MVC/view/packgeScreen.dart';
 import 'package:bet_for_big/components/custom_appbar.dart';
 import 'package:bet_for_big/components/historyRecordCard.dart';
@@ -9,6 +10,7 @@ import 'package:bet_for_big/constant/constants.dart';
 import 'package:bet_for_big/constant/navigation.dart';
 import 'package:bet_for_big/constant/theme.dart';
 import 'package:bet_for_big/data/dummyData/mockData.dart';
+import 'package:bet_for_big/helper/data_storage.dart';
 import 'package:bet_for_big/helper/internet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: CustomAppBar(),
+       
               body: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -59,8 +61,9 @@ class ProfileScreen extends StatelessWidget {
                               child: ImageWidget(
                                   height: 80.sp,
                                   width: 100,
-                                  imageUrl:
-                                      'https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'),
+                                  imageUrl: DataStroge.userImage.string
+                                  // 'https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'
+                                  ),
                             ),
                           ),
                           SizedBox(
@@ -70,7 +73,8 @@ class ProfileScreen extends StatelessWidget {
                             width: 150.sp,
                             child: Text(
                               textAlign: TextAlign.center,
-                              'CALVIN KING',
+                              // 'CALVIN KING'
+                              DataStroge.userName.string,
                               softWrap: true,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
@@ -88,7 +92,9 @@ class ProfileScreen extends StatelessWidget {
                             width: 250.sp,
                             child: Text(
                               textAlign: TextAlign.center,
-                              'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born.',
+                              DataStroge.userBio.string == ''
+                                  ? 'No Bio Added'
+                                  : DataStroge.userBio.string,
                               softWrap: true,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
@@ -173,7 +179,10 @@ class ProfileScreen extends StatelessWidget {
                                           letterSpacing: 1.sp),
                                     ),
                                     GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigation.getInstance.screenNavigation(
+                                            context, SubscribedListScreen());
+                                      },
                                       child: Text(
                                         'View All',
                                         softWrap: true,
@@ -195,10 +204,14 @@ class ProfileScreen extends StatelessWidget {
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
                                     children: Mockdata.subscriptionPickList
-                                        .map((e) => pickCard(
-                                              packageName: e['name'],
-                                              stateName: e['stateName'],
-                                              onTap: () {},
+                                        .map((e) => Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 10.sp),
+                                              child: pickCard(
+                                                packageName: e['name'],
+                                                stateName: e['stateName'],
+                                                onTap: () {},
+                                              ),
                                             ))
                                         .toList(),
                                   ),
@@ -244,10 +257,14 @@ class ProfileScreen extends StatelessWidget {
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
                                     children: Mockdata.subscriptionPickList
-                                        .map((e) => pickCard(
-                                              packageName: e['name'],
-                                              stateName: e['stateName'],
-                                              onTap: () {},
+                                        .map((e) => Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 10.sp),
+                                              child: pickCard(
+                                                packageName: e['name'],
+                                                stateName: e['stateName'],
+                                                onTap: () {},
+                                              ),
                                             ))
                                         .toList(),
                                   ),
@@ -292,15 +309,19 @@ class ProfileScreen extends StatelessWidget {
                                 SizedBox(
                                   height: 10.sp,
                                 ),
-                                SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        packageCard(),
-                                        packageCard(),
-                                        packageCard(),
-                                      ],
-                                    ))
+                                Row(
+                                  children: [
+                                    Expanded(flex: 1, child: packageCard()),
+                                    SizedBox(
+                                      width: 10.sp,
+                                    ),
+                                    Expanded(flex: 1, child: packageCard()),
+                                    SizedBox(
+                                      width: 10.sp,
+                                    ),
+                                    Expanded(flex: 1, child: packageCard()),
+                                  ],
+                                )
                               ]),
                         ),
                       ),
@@ -324,61 +345,67 @@ class packageCard extends StatelessWidget {
     return GetBuilder<ThemeHelper>(builder: (themecontroller) {
       return SpringWidget(
         onTap: () {},
-        child: Padding(
-          padding: EdgeInsets.only(right: 10.sp),
-          child: Container(
-            // height: 100.sp,
+        child: Container(
+          // height: 100.sp,
 
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: themecontroller.colorPrimary, width: 0.1)),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 10.sp),
-              child: Column(children: [
-                SizedBox(
-                  width: 100.sp,
-                  child: Text(
-                    'Daily package',
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12.sp,
-                        // fontWeight: FontWeight.bold,
-                        letterSpacing: 1.sp),
-                  ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10.0,
+                  spreadRadius: 1,
+                  offset: Offset(2, 8),
                 ),
-                SizedBox(
-                  width: 120.sp,
-                  child: Text(
-                    '${600}\$',
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: TextStyle(
-                        color: themecontroller.colorPrimary,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.sp),
-                  ),
-                ),
-                Text(
-                  'Terms & Conditions\n Apply',
+              ],
+              border:
+                  Border.all(color: themecontroller.colorPrimary, width: 0.1)),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 10.sp),
+            child: Column(children: [
+              SizedBox(
+                // width: 100.sp,
+                child: Text(
+                  'Daily package',
                   textAlign: TextAlign.center,
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(
-                      color: themecontroller.colorPrimary.withOpacity(0.7),
-                      fontSize: 6.sp,
+                      color: Colors.black,
+                      fontSize: 12.sp,
+                      // fontWeight: FontWeight.bold,
+                      letterSpacing: 1.sp),
+                ),
+              ),
+              SizedBox(
+                width: 120.sp,
+                child: Text(
+                  '${600}\$',
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: TextStyle(
+                      color: themecontroller.colorPrimary,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1.sp),
                 ),
-              ]),
-            ),
+              ),
+              Text(
+                'Terms & Conditions\n Apply',
+                textAlign: TextAlign.center,
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: TextStyle(
+                    color: themecontroller.colorPrimary.withOpacity(0.7),
+                    fontSize: 6.sp,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.sp),
+              ),
+            ]),
           ),
         ),
       );
@@ -392,81 +419,82 @@ class pickCard extends StatelessWidget {
     required this.packageName,
     required this.stateName,
     required this.onTap,
+    this.width,
+    this.icon,
   });
   final String packageName;
   final String stateName;
   final Function() onTap;
+  final double? width;
+  final IconData? icon;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ThemeHelper>(builder: (themecontroller) {
       return SpringWidget(
         onTap: onTap,
-        child: Padding(
-          padding: EdgeInsets.only(right: 10.sp),
-          child: Container(
-            // height: 100.sp,
-            width: 250.sp,
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: themecontroller.colorPrimary, width: 0.1)),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 20.sp),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 150.sp,
-                          child: Text(
-                            packageName,
-                            // 'Fancy Football League',
-                            softWrap: true,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                                color: themecontroller.colorPrimary,
-                                fontSize: 12.sp,
-                                // fontWeight: FontWeight.bold,
-                                letterSpacing: 1.sp),
-                          ),
-                        ),
-                        Text(
-                          'Bet on',
+        child: Container(
+          // height: 100.sp,
+          width: width ?? 250.sp,
+          decoration: BoxDecoration(
+              border:
+                  Border.all(color: themecontroller.colorPrimary, width: 0.1)),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 20.sp),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 150.sp,
+                        child: Text(
+                          packageName,
+                          // 'Fancy Football League',
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(
-                              color:
-                                  themecontroller.colorPrimary.withOpacity(0.5),
-                              fontSize: 7.sp,
+                              color: themecontroller.colorPrimary,
+                              fontSize: 12.sp,
                               // fontWeight: FontWeight.bold,
                               letterSpacing: 1.sp),
                         ),
-                        SizedBox(
-                          width: 150.sp,
-                          child: Text(
-                            stateName,
-                            // 'New Mexico State',
-                            softWrap: true,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12.sp,
-                                // fontWeight: FontWeight.bold,
-                                letterSpacing: 1.sp),
-                          ),
+                      ),
+                      Text(
+                        'Bet on',
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyle(
+                            color:
+                                themecontroller.colorPrimary.withOpacity(0.5),
+                            fontSize: 7.sp,
+                            // fontWeight: FontWeight.bold,
+                            letterSpacing: 1.sp),
+                      ),
+                      SizedBox(
+                        width: 150.sp,
+                        child: Text(
+                          stateName,
+                          // 'New Mexico State',
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12.sp,
+                              // fontWeight: FontWeight.bold,
+                              letterSpacing: 1.sp),
                         ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: themecontroller.colorPrimary,
-                    )
-                  ]),
-            ),
+                      ),
+                    ],
+                  ),
+                  Icon(
+                    icon ?? Icons.arrow_forward_ios_rounded,
+                    color: themecontroller.colorPrimary,
+                  )
+                ]),
           ),
         ),
       );

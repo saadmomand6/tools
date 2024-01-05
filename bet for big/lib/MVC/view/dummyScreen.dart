@@ -19,7 +19,7 @@ class dummyScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: CustomAppBar(),
+       
               body: Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: Constants.screenPadding,

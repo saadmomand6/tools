@@ -1,5 +1,8 @@
 import 'dart:developer';
+import 'package:bet_for_big/MVC/model/UserModel.dart';
+import 'package:bet_for_big/components/bottomNavigation.dart';
 import 'package:bet_for_big/constant/constants.dart';
+import 'package:bet_for_big/constant/flutter_toast.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../constant/navigation.dart';
@@ -10,13 +13,13 @@ class AppService {
   static AppService get getInstance => _instance ??= AppService();
 
   late Dio dio;
-final _pref = DataStroge();
+  final _pref = DataStroge();
   AppService() {
     // log("headerMap: ${DataStroge.getInstance.headersMap}");
     dio = Dio(
       BaseOptions(
         baseUrl: Constants.API_HOST,
-        headers: DataStroge.getInstance.headersMap,
+        // headers: DataStroge.getInstance.headersMap,
       ),
     );
     // print("[AppService] ${DataStroge.getInstance.headersMap}");
@@ -27,50 +30,42 @@ final _pref = DataStroge();
     }
   }
 
+  Future<void> Login(
+      BuildContext context, String Email, String password) async {
+    try {
+      var response = await dio.post(Constants.PostLogin, data: {
+        'email': Email,
+        'password': password,
+      });
 
+      if (response.statusCode == 200) {
+        log("login API =>${response.data['status']}👌✅");
+        final json = response.data;
 
-//  Future<void> Login(
-//       BuildContext context, String Email, String password) async {
-//     try {
+        AuthResponse UserData = AuthResponse.fromJson(json);
 
-//       var response = await dio.get(Constants.PostLogin, data: {
-//         'emailaddress': Email,
-//         'password': password,
-//       });
-
-//       if (response.statusCode == 200) {
-//         log("login API =>${response.data['success']}👌✅");
-//         final json = response.data;
-
-//         UserModel UserData = UserModel.fromJson(json['data']);
-
-//         log("userEmail ${UserData.email}");
-//         log("username ${UserData.name}");
-//         await _pref.insertUserData(UserData);
-//         FlutterToastDisplay.getInstance.showToast("Welcome To the AUTOREPAIR");
-//         Navigation.getInstance
-//             .pagePushAndReplaceNavigation(context, BottomNavBar());
-//       } else {
-//         print('Unknown Error Occurred ${(response.data['message'])} ');
-//         FlutterToastDisplay.getInstance
-//             .showToast("${response.data['message']}");
-//       }
-//     } on DioException catch (e) {
-//       if (e.response != null) {
-//         FlutterToastDisplay.getInstance
-//             .showToast("${e.response!.data['message']}");
-//         print("Error msg data: ${e.response!.data['message']}");
-//       } else {
-//         print("Error sending data: $e");
-//       }
-//       print(e);
-//     }
-//   }
-
-
-
-
-
+        log("userEmail ${UserData.data.email}");
+        log("username ${UserData.data.email}");
+        await _pref.insertUserData(UserData);
+        FlutterToastDisplay.getInstance.showToast("Welcome To the BetForBig");
+        Navigation.getInstance
+            .pagePushAndReplaceNavigation(context, BottomNavBar());
+      } else {
+        print('Unknown Error Occurred ${(response.data['message'])} ');
+        FlutterToastDisplay.getInstance
+            .showToast("${response.data['message']}");
+      }
+    } on DioException catch (e) {
+      if (e.response != null) {
+        FlutterToastDisplay.getInstance
+            .showToast("${e.response!.data['message']}");
+        print("Error msg data: ${e.response!.data['message']}");
+      } else {
+        print("Error sending data: $e");
+      }
+      print(e);
+    }
+  }
 
 //     getAllInspectionCars() async {
 //     try {
@@ -90,19 +85,18 @@ final _pref = DataStroge();
 //           List<CarInspectionModel> Productlist = (response.data as List)
 //               .map((data) => CarInspectionModel.fromJson(data))
 //               .toList();
-              
+
 //           return Productlist;
 //         } else if (responseData is Map) {
 //           List<CarInspectionModel> Productlist = (responseData['data'] as List)
 //               .map((data) => CarInspectionModel.fromJson(data))
 //               .toList();
 
-
 //           return Productlist;
-         
+
 //         }
 //       }
-      
+
 //     } on DioException catch (e) {
 //       print(e);
 //       FlutterToastDisplay.getInstance

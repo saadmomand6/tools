@@ -1,4 +1,4 @@
-import 'package:bet_for_big/MVC/view/profileScreen.dart';
+import 'package:bet_for_big/MVC/view/historicalRecordNonSubScreen.dart';
 import 'package:bet_for_big/components/custom_appbar.dart';
 import 'package:bet_for_big/components/historyRecordCard.dart';
 import 'package:bet_for_big/components/image_widget.dart';
@@ -13,8 +13,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class packageScreen extends StatelessWidget {
-  packageScreen({super.key});
+class HistoryRecordScreen extends StatelessWidget {
+  HistoryRecordScreen({super.key});
 
   final internetController = Get.put(InternetController());
   final searchController = TextEditingController();
@@ -54,7 +54,7 @@ class packageScreen extends StatelessWidget {
                           ),
                           Text(
                             textAlign: TextAlign.center,
-                            "OUR PACKAGES",
+                            "HISTORICAL RECORDS",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.sp,
@@ -62,22 +62,21 @@ class packageScreen extends StatelessWidget {
                                 letterSpacing: 3),
                           ),
                           SizedBox(
-                            height: 10.sp,
+                            height: 20.sp,
                           ),
-                          searchTextFeild(
-                              FontSize: 10.sp,
-                              height: 35.sp,
-                              searchFocusNode: _searchFocusNode,
-                              searchController: searchController),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: Mockdata.FilterBtnList.map(
+                                (e) => FilterBtn(title: e['Title'])).toList(),
+                          ),
                           SizedBox(
-                            height: 10.sp,
+                            height: 20.sp,
                           ),
                           Row(
                             children: [
                               Expanded(
                                 flex: 3,
                                 child: searchTextFeild(
-                                    btnIcon: Icons.arrow_drop_down,
                                     FontSize: 10.sp,
                                     height: 35.sp,
                                     searchFocusNode: _searchFocusNode,
@@ -117,9 +116,15 @@ class packageScreen extends StatelessWidget {
                         ]),
                       ),
                     ),
-                    packageSection(),
-                    packageSection(),
-                    packageSection()
+                    Container(
+                      height: 400.sp,
+                      child: ListView.builder(
+                        itemCount: 10,
+                        itemBuilder: (BuildContext context, int index) {
+                          return historyRecordCard();
+                        },
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -129,94 +134,53 @@ class packageScreen extends StatelessWidget {
   }
 }
 
-class packageSection extends StatelessWidget {
-  const packageSection({
+class emptyHistoryRecord extends StatelessWidget {
+  const emptyHistoryRecord({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: Constants.screenPadding,
-          vertical: Constants.screenPadding),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CircleAvatar(
-                radius: 15.sp,
-              ),
-              Text(
-                textAlign: TextAlign.center,
-                "JOE SMITH",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.sp,
+    return GetBuilder<ThemeHelper>(builder: (themecontroller) {
+      return Padding(
+        padding:
+            const EdgeInsets.symmetric(horizontal: Constants.screenPadding),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30.sp,
+            ),
+            SvgPicture.asset(
+              'assets/icons/subscription.svg',
+              color: themecontroller.colorPrimary,
+              height: 120.sp,
+            ),
+            SizedBox(
+              height: 10.sp,
+            ),
+            Text(
+              textAlign: TextAlign.center,
+              "subscription Required For More Records & Picks",
+              style: TextStyle(
+                  color: themecontroller.colorPrimary,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w400,
-                ),
-              ),
-              SizedBox(
-                width: 20.sp,
-              ),
-              Text(
-                textAlign: TextAlign.center,
-                "Wins: ${20}",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 7.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Text(
-                textAlign: TextAlign.center,
-                "Losses: ${20}",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 7.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Text(
-                textAlign: TextAlign.center,
-                "Units won: ${20}",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 7.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Text(
-                textAlign: TextAlign.center,
-                "ROI: ${20}%",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 7.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10.sp,
-          ),
-          Row(
-            children: [
-              Expanded(flex: 1, child: packageCard()),
-              SizedBox(
-                width: 10.sp,
-              ),
-              Expanded(flex: 1, child: packageCard()),
-              SizedBox(
-                width: 10.sp,
-              ),
-              Expanded(flex: 1, child: packageCard()),
-            ],
-          )
-        ],
-      ),
-    ));
+                  letterSpacing: 3),
+            ),
+            SizedBox(
+              height: 30.sp,
+            ),
+            RoundButton(
+              height: 50.sp,
+              title: 'Subscribe Now',
+              textColor: themecontroller.colorPrimary,
+              backgroundColor: Colors.white,
+              borderColor: themecontroller.colorPrimary,
+              onTap: () {},
+            )
+          ],
+        ),
+      );
+    });
   }
 }

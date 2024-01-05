@@ -144,7 +144,7 @@ class _RoundButtonState extends State<RoundButton> {
                 ),
               if (widget.loading)
                 SmallLoader(
-                  color: widget.disabled ? Color(0xFFf7746c) : Colors.white,
+                  color: widget.disabled ? Colors.white : Colors.white,
                   adaptive: true,
                 )
             ],

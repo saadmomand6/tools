@@ -26,7 +26,7 @@ class HistoryRecordScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: CustomAppBar(),
+       
               body: SingleChildScrollView(
                 child: Column(
                   children: [

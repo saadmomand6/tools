@@ -1,4 +1,5 @@
 import 'package:bet_for_big/MVC/view/loginScreen.dart';
+import 'package:bet_for_big/MVC/view/onboardingScreen.dart';
 import 'package:bet_for_big/components/bottomNavigation.dart';
 import 'package:bet_for_big/components/custom_textfiled.dart';
 import 'package:bet_for_big/components/round_button.dart';
@@ -141,7 +142,7 @@ class RegisterationScreen extends StatelessWidget {
                           onTap: () {
                             Navigation.getInstance
                                 .Page_PushAndReplaceNavigationwithTransition(
-                                    context, BottomNavBar());
+                                    context, OnboardingScreen());
                           },
                         ),
                         SizedBox(

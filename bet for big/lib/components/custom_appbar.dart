@@ -38,7 +38,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            
+            Scaffold.of(context).openDrawer();
+          },
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: Constants.screenPadding),

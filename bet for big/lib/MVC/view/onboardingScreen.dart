@@ -1,4 +1,5 @@
 import 'package:bet_for_big/MVC/view/registerationScreen.dart';
+import 'package:bet_for_big/components/bottomNavigation.dart';
 import 'package:bet_for_big/components/round_button.dart';
 import 'package:bet_for_big/constant/constants.dart';
 import 'package:bet_for_big/constant/navigation.dart';
@@ -39,8 +40,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: Constants.screenPadding),
+                      horizontal: 10, vertical: Constants.screenPadding),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -123,8 +123,9 @@ class OnboardingScreen extends StatelessWidget {
                             borderColor:
                                 const Color.fromARGB(255, 216, 215, 215),
                             onTap: () {
-                              Navigation.getInstance.Page_PushAndReplaceNavigationwithTransition(
-                                  context, RegisterationScreen());
+                              Navigation.getInstance
+                                  .Page_PushAndReplaceNavigationwithTransition(
+                                      context, BottomNavBar());
                             },
                           ),
                         ),

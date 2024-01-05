@@ -27,7 +27,8 @@ class HomeScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: CustomAppBar(),
+       
+              
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

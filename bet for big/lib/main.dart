@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:bet_for_big/MVC/view/welcomeScreen.dart';
+import 'package:bet_for_big/components/bottomNavigation.dart';
 import 'package:bet_for_big/constant/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +15,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   DataStroge.getInstance.initiateSession();
-  // await DataStroge.getInstance.getUserData();
+  await DataStroge.getInstance.getUserData();
   loadConfig();
   runApp(const MyApp());
   Get.put(ThemeHelper());
@@ -44,14 +45,8 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: WelcomeScreen(),
-      // Obx(() => DataStroge.userName.value == ''
-      //     ? WelcomeScreen()
-      //     : CarDetailScreen(
-      //         id: 1,
-      //         imageUrl:
-      //             'https://www.hdcarwallpapers.com/walls/nissan_gt_r_white-wide.jpg',
-      //       )),
+      child:WelcomeScreen(),
+      //  Obx(() => DataStroge.accessToken.value == '' ? WelcomeScreen() : BottomNavBar()),
     );
   }
 }

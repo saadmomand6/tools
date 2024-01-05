@@ -9,7 +9,7 @@ class ThemeHelper extends GetxController {
   static const colortoast = Color.fromARGB(255, 13, 143, 172);
   static const colortoasttext = const Color(0xffffffff);
 
-  final colorPrimary =  Color.fromARGB(255, 13, 143, 172);
+  final colorPrimary = Color.fromARGB(255, 13, 143, 172);
   final colorCanvas = const Color(0xFFfecdca);
 
   final circleicon = const Color(0xfffd853a);
@@ -34,25 +34,27 @@ class ThemeHelper extends GetxController {
   final colorwhite = const Color(0xffffffff);
 
   final containerGradient = const LinearGradient(
-    colors: [
-      Color.fromARGB(255, 255, 228, 210),
-      Color.fromARGB(255, 253, 240, 231),
-      Color.fromARGB(255, 255, 241, 241),
-      Color.fromARGB(255, 253, 240, 231),
-      Color.fromARGB(255, 255, 241, 241),
-      Color.fromARGB(255, 253, 241, 232),
-    ],
-    stops: [
-      0.1,
-      0.4,
-      0.6,
-      0.9,
-      0.4,
-      0.6,
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
+  colors: [
+    Color.fromARGB(128, 12, 166, 201), // Lighter color with lower alpha
+    Color.fromARGB(255, 13, 143, 172),
+    Color.fromARGB(255, 13, 143, 172),
+    Color.fromARGB(255, 13, 143, 172),
+    Color.fromARGB(255, 13, 143, 172),
+    Color.fromARGB(255, 13, 143, 172),
+  ],
+  stops: [
+    0.0,
+    0.5,
+    0.0,
+    0.0,
+    0.39,
+    0.75,
+    
+  ],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+);
+
 
   final screenGradient = const LinearGradient(
     colors: [
@@ -153,7 +155,8 @@ class ThemeHelper extends GetxController {
 
   SystemUiOverlayStyle get systemUiOverlayWithPrimery => SystemUiOverlayStyle(
         statusBarColor: Color.fromARGB(255, 35, 160, 189).withOpacity(0.9),
-        systemNavigationBarColor: Color.fromARGB(255, 35, 160, 189).withOpacity(0.9),
+        systemNavigationBarColor:
+            Color.fromARGB(255, 35, 160, 189).withOpacity(0.9),
         statusBarBrightness:
             isDarkTheme.value ? Brightness.dark : Brightness.light,
         statusBarIconBrightness:

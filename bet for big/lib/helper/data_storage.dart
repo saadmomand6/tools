@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:bet_for_big/MVC/model/UserModel.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/app_service.dart';
@@ -8,7 +9,7 @@ class DataStroge extends GetxController {
   static DataStroge get getInstance => _instance ??= DataStroge();
   late SharedPreferences _pref;
 
-  late Map<String, dynamic> headersMap;
+  // late Map<String, dynamic> headersMap;
 
   Future<SharedPreferences> _initPrefs() async {
     _pref = await SharedPreferences.getInstance();
@@ -16,31 +17,57 @@ class DataStroge extends GetxController {
   }
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
+  static RxString userId = ''.obs;
   static RxString userName = ''.obs;
   static RxString userEmail = ''.obs;
+  static RxString userImage = ''.obs;
+  static RxString userphone = ''.obs;
+  static RxString userBio = ''.obs;
+  static RxString userType = ''.obs;
+  static RxString accessToken = ''.obs;
 
   Future initiateSession() async {
     log("initiateSession called");
     await _initPrefs();
-    headersMap = {
-      'key': 'X-APP-KEY',
-      'value': '123456',
-    };
+    // headersMap = {
+    //   'key': 'X-APP-KEY',
+    //   'value': '123456',
+    // };
 
     AppService.getInstance.updateDioHeaders();
   }
 
-  // insertUserData(UserModel UserData) async {
-  //   final SharedPreferences? prefs = await _prefs;
+  // static RxInt userId = 0.obs;
+  // static RxString userName = ''.obs;
+  // static RxString userEmail = ''.obs;
+  // static RxString userImage = ''.obs;
+  // static RxString userphone = ''.obs;
+  // static RxString userBio = ''.obs;
+  // static RxString userType = ''.obs;
+  // static RxString accessToken = ''.obs;
 
-  //   await prefs?.setString('name', UserData.name);
-  //   await prefs?.setString('email', UserData.email);
+  insertUserData(AuthResponse UserData) async {
+    final SharedPreferences? prefs = await _prefs;
 
-  //   await initiateSession();
-  //   userName.value = UserData.name;
-  //   userEmail.value = UserData.email;
-  // }
+    await prefs?.setString('userId', UserData.data.id.toString());
+    await prefs?.setString('userName', UserData.data.name);
+    await prefs?.setString('userEmail', UserData.data.email);
+    await prefs?.setString('userImage', UserData.data.image);
+    await prefs?.setString('userphone', UserData.data.phone ?? '');
+    await prefs?.setString('userBio', UserData.data.bio ?? '');
+    await prefs?.setString('userType', UserData.data.userType);
+    await prefs?.setString('accessToken', UserData.accessToken);
+
+    await initiateSession();
+    userId.value = UserData.data.id.toString();
+    userName.value = UserData.data.name;
+    userEmail.value = UserData.data.email;
+    userImage.value = UserData.data.image;
+    userphone.value = UserData.data.phone ?? '';
+    userBio.value = UserData.data.bio ?? '';
+    userType.value = UserData.data.userType;
+    accessToken.value = UserData.accessToken;
+  }
 
   // insertDeviceAndFCMInformation({FcmToken, deviceID}) async {
   //   final SharedPreferences? prefs = await _prefs;
@@ -79,15 +106,18 @@ class DataStroge extends GetxController {
   //   }
   // }
 
-  // getUserData() async {
-  //   final SharedPreferences? prefs = await _prefs;
+  getUserData() async {
+    final SharedPreferences? prefs = await _prefs;
 
-  //   userName.value = prefs?.getString('name') ?? "";
-
-  //   userEmail.value = prefs?.getString('email') ?? "";
-
-  //   // currentUserId.value = prefs?.getString('id') ?? "";
-  // }
+    userId.value = prefs?.getString('userId') ?? "";
+    userEmail.value = prefs?.getString('userEmail') ?? "";
+    userName.value = prefs?.getString('userName') ?? "";
+    userphone.value = prefs?.getString('userImage') ?? "";
+    userImage.value = prefs?.getString('userphone') ?? "";
+    userBio.value = prefs?.getString('userBio') ?? "";
+    userType.value = prefs?.getString('userType') ?? "";
+    accessToken.value = prefs?.getString('accessToken') ?? "";
+  }
 
   logout() async {
     final SharedPreferences prefs = await _prefs;
