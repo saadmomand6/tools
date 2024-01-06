@@ -12,8 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class HistoryRecordScreen extends StatelessWidget {
-  HistoryRecordScreen({super.key});
+class HistoryRecordNoneSubScreen extends StatelessWidget {
+  HistoryRecordNoneSubScreen({super.key});
 
   final internetController = Get.put(InternetController());
   final searchController = TextEditingController();

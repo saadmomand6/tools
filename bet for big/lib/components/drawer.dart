@@ -1,3 +1,5 @@
+import 'package:bet_for_big/MVC/view/historicalRecordNonSubScreen.dart';
+import 'package:bet_for_big/MVC/view/historicalRecordSub.dart';
 import 'package:bet_for_big/MVC/view/myBetScreen.dart';
 import 'package:bet_for_big/components/image_widget.dart';
 import 'package:bet_for_big/constant/navigation.dart';
@@ -90,6 +92,12 @@ class AppDrawer extends StatelessWidget {
               title: Text('My Bets'),
               onTap: () {
                 Navigation.getInstance.screenNavigation(context, MyBetScreen());
+              },
+            ),
+              ListTile(
+              title: Text('Subscriber Picks'),
+              onTap: () {
+                Navigation.getInstance.screenNavigation(context, HistoryRecordSubScreen());
               },
             ),
             ListTile(

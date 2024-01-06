@@ -230,12 +230,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
       case 0:
         return HomeScreen();
       case 1:
-        return HistoryRecordScreen();
+        return HistoryRecordNoneSubScreen();
 
       case 2:
         return MyActionScreen();
       case 3:
-        return HistoryRecordScreen();
+        return HistoryRecordNoneSubScreen();
       case 4:
         return ProfileScreen();
       default:

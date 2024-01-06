@@ -23,9 +23,7 @@ class MyActionScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-              appBar: CustomAppBar(onTap: () {
-                
-              },),
+            
               body: SingleChildScrollView(
                 
                 child: Container(

@@ -7,14 +7,15 @@ import 'package:bet_for_big/components/searchTextfield.dart';
 import 'package:bet_for_big/constant/constants.dart';
 import 'package:bet_for_big/constant/theme.dart';
 import 'package:bet_for_big/data/dummyData/mockData.dart';
+import 'package:bet_for_big/helper/data_storage.dart';
 import 'package:bet_for_big/helper/internet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class HistoryRecordScreen extends StatelessWidget {
-  HistoryRecordScreen({super.key});
+class HistoryRecordSubScreen extends StatelessWidget {
+  HistoryRecordSubScreen({super.key});
 
   final internetController = Get.put(InternetController());
   final searchController = TextEditingController();
@@ -27,11 +28,14 @@ class HistoryRecordScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
-       
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
+              appBar: AppBar(
+                  
+              ),
+              body: Column(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -54,7 +58,7 @@ class HistoryRecordScreen extends StatelessWidget {
                           ),
                           Text(
                             textAlign: TextAlign.center,
-                            "HISTORICAL RECORDS",
+                            "SUBSCRIBER PICKS",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.sp,
@@ -90,20 +94,21 @@ class HistoryRecordScreen extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Text(
-                                        textAlign: TextAlign.center,
-                                        "search by filter",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 8.sp,
-                                          fontWeight: FontWeight.w400,
+                                      Obx(
+                                        () => Text(
+                                          textAlign: TextAlign.center,
+                                          DataStroge.userName.string,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
-                                      SvgPicture.asset(
-                                        'assets/icons/filter.svg',
+                                      Icon(
+                                        Icons.keyboard_arrow_down_sharp,
                                         color: Colors.white,
-                                        height: 25.sp,
-                                      ),
+                                      )
                                     ],
                                   ),
                                 ),
@@ -116,17 +121,49 @@ class HistoryRecordScreen extends StatelessWidget {
                         ]),
                       ),
                     ),
-                    Container(
-                      height: 400.sp,
-                      child: ListView.builder(
-                        itemCount: 10,
-                        itemBuilder: (BuildContext context, int index) {
-                          return historyRecordCard();
-                        },
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10.sp),
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              radius: 30.sp,
+                              backgroundColor: themecontroller.colorPrimary,
+                              child: Image.asset(
+                                'assets/images/hookie.png',
+                                height: 60.sp,
+                              ),
+                            ),
+                            title: Text(
+                              'NCAAB',
+                              style: TextStyle(
+                                  color: themecontroller.colorPrimary,
+                                  fontSize: 14.sp),
+                            ),
+                            trailing: Column(children: [
+                              Text(
+                                'Bet Result',
+                                style: TextStyle(
+                                    color: themecontroller.colorPrimary,
+                                    fontSize: 8.sp),
+                              ),
+                              Text(
+                                'pending',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10.sp),
+                              ),
+                            ]),
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                ],
               ),
             ),
           ));
